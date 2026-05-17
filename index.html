@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Mercado Livre Callback</title>
+</head>
+<body>
+  <h1>Callback Mercado Livre</h1>
+
+  <p>Copie o código abaixo:</p>
+
+  <pre id="code" style="font-size: 18px; background: #eee; padding: 12px;"></pre>
+
+  <p>URL completa recebida:</p>
+
+  <pre id="url" style="font-size: 14px; background: #eee; padding: 12px;"></pre>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const code = params.get("code");
+    const error = params.get("error");
+    const errorDescription = params.get("error_description");
+
+    const codeBox = document.getElementById("code");
+    const urlBox = document.getElementById("url");
+
+    urlBox.textContent = window.location.href;
+
+    if (code) {
+      codeBox.textContent = code;
+    } else if (error) {
+      codeBox.textContent =
+        "Erro: " + error + "\n" + (errorDescription || "");
+    } else {
+      codeBox.textContent =
+        "Nenhum code encontrado na URL.";
+    }
+  </script>
+</body>
+</html>
